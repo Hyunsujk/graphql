@@ -1,12 +1,23 @@
 {
   "compilerOptions": {
     "rootDirs": ["src"],
-    "outDir": "dist",
+    "outDir": "./dist",
     "lib": ["es2020"],
     "target": "es2020",
     "module": "esnext",
     "moduleResolution": "node",
+    "types": ["node"],
+    //"strict": true,
     "esModuleInterop": true,
-    "types": ["node"]
-  }
+    //"skipLibCheck": true,
+    //"isolatedModules": true,
+    //"esModuleInterop": true,
+    //"noEmit": true,
+    //"allowImportingTsExtensions": true,
+    //"allowSyntheticDefaultImports": true
+  },
+  "exclude": ["node_moduels"],
+  "include": [
+    "src/**/*",
+  ]
 }
