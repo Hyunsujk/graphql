@@ -8,8 +8,14 @@ import { typeDefs } from "./schema.js";
 const resolvers = {
   Query: {
     games: () => db.games,
+    game: (_: unknown, args: { id: string }) =>
+      db.games.find((game) => game.id === args.id),
     reviews: () => db.reviews,
+    review: (_: unknown, args: { id: string }) =>
+      db.reviews.find((review) => review.id === args.id),
     authors: () => db.authors,
+    author: (_: unknown, args: { id: string }) =>
+      db.authors.find((author) => author.id === args.id),
   },
 };
 
