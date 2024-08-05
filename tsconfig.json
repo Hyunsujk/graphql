@@ -7,17 +7,15 @@
     "module": "esnext",
     "moduleResolution": "node",
     "types": ["node"],
-    //"strict": true,
     "esModuleInterop": true,
-    //"skipLibCheck": true,
-    //"isolatedModules": true,
-    //"esModuleInterop": true,
-    //"noEmit": true,
-    //"allowImportingTsExtensions": true,
-    //"allowSyntheticDefaultImports": true
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "allowJs": true,
+    "baseUrl": "."
   },
   "exclude": ["node_moduels"],
-  "include": [
-    "src/**/*",
-  ]
+  "include": ["./src/**/*.ts"]
 }
