@@ -1,4 +1,6 @@
-let games = [
+import { Author, Game, Review } from "src/__generated__/resolvers-types";
+
+const Games: Omit<Required<Game>, "__typename">[] = [
   { id: "1", title: "Zelda, Tears of the Kingdom", platform: ["Switch"] },
   { id: "2", title: "Final Fantasy 7 Remake", platform: ["PS5", "Xbox"] },
   { id: "3", title: "Elden Ring", platform: ["PS5", "Xbox", "PC"] },
@@ -6,13 +8,13 @@ let games = [
   { id: "5", title: "Pokemon Scarlet", platform: ["PS5", "Xbox", "PC"] },
 ];
 
-let authors = [
+const Authors: Omit<Required<Author>, "__typename">[] = [
   { id: "1", name: "mario", verified: true },
   { id: "2", name: "yoshi", verified: false },
   { id: "3", name: "peach", verified: true },
 ];
 
-let reviews = [
+const Reviews: Omit<Required<Review>, "__typename">[] = [
   { id: "1", rating: 9, content: "lorem ipsum", author_id: "1", game_id: "2" },
   { id: "2", rating: 10, content: "lorem ipsum", author_id: "2", game_id: "1" },
   { id: "3", rating: 7, content: "lorem ipsum", author_id: "3", game_id: "3" },
@@ -22,4 +24,15 @@ let reviews = [
   { id: "7", rating: 10, content: "lorem ipsum", author_id: "3", game_id: "1" },
 ];
 
-export default { games, authors, reviews };
+export default { Games, Authors, Reviews };
+
+export class DataSource {
+  getGames = (): Game[] => Games;
+  getGame = (id: string): Game | undefined => Games.find((g) => g.id === id);
+  getAuthors = (): Author[] => Authors;
+  getAuthor = (id: string): Author | undefined =>
+    Authors.find((a) => a.id === id);
+  getReviews = (): Review[] => Reviews;
+  getReivew = (id: string): Review | undefined =>
+    Reviews.find((r) => r.id === id);
+}
