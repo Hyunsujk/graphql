@@ -1,30 +1,27 @@
+import { readFileSync } from "fs";
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-import db from "./db/index.js";
+import { DataSource } from "./db/index.js";
+import resolvers from "./resolvers/index.js";
 
-import { typeDefs } from "./schema.js";
+const typeDefs = readFileSync("./schema.graphql", { encoding: "utf-8" });
 
-const resolvers = {
-  Query: {
-    games: () => db.games,
-    game: (_: unknown, args: { id: string }) =>
-      db.games.find((game) => game.id === args.id),
-    reviews: () => db.reviews,
-    review: (_: unknown, args: { id: string }) =>
-      db.reviews.find((review) => review.id === args.id),
-    authors: () => db.authors,
-    author: (_: unknown, args: { id: string }) =>
-      db.authors.find((author) => author.id === args.id),
-  },
-};
+export interface Context {
+  dataSources: DataSource;
+}
 
-const server = new ApolloServer({
+const server = new ApolloServer<Context>({
   typeDefs,
   resolvers,
 });
 
 const { url } = await startStandaloneServer(server, {
+  context: async () => {
+    return {
+      dataSources: new DataSource(),
+    };
+  },
   listen: { port: 4000 },
 });
 

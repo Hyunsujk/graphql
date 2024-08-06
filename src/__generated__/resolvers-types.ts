@@ -21,7 +21,6 @@ export type Author = {
   __typename?: 'Author';
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
-  reviews?: Maybe<Array<Review>>;
   verified: Scalars['Boolean']['output'];
 };
 
@@ -29,7 +28,6 @@ export type Game = {
   __typename?: 'Game';
   id: Scalars['ID']['output'];
   platform: Array<Scalars['String']['output']>;
-  reviews?: Maybe<Array<Review>>;
   title: Scalars['String']['output'];
 };
 
@@ -60,9 +58,9 @@ export type QueryReviewArgs = {
 
 export type Review = {
   __typename?: 'Review';
-  author: Author;
+  author_id: Scalars['String']['output'];
   content: Scalars['String']['output'];
-  game: Game;
+  game_id: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   rating: Scalars['Int']['output'];
 };
@@ -164,7 +162,6 @@ export type ResolversParentTypes = ResolversObject<{
 export type AuthorResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  reviews?: Resolver<Maybe<Array<ResolversTypes['Review']>>, ParentType, ContextType>;
   verified?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -172,7 +169,6 @@ export type AuthorResolvers<ContextType = Context, ParentType extends ResolversP
 export type GameResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Game'] = ResolversParentTypes['Game']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   platform?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
-  reviews?: Resolver<Maybe<Array<ResolversTypes['Review']>>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -187,9 +183,9 @@ export type QueryResolvers<ContextType = Context, ParentType extends ResolversPa
 }>;
 
 export type ReviewResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Review'] = ResolversParentTypes['Review']> = ResolversObject<{
-  author?: Resolver<ResolversTypes['Author'], ParentType, ContextType>;
+  author_id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  game?: Resolver<ResolversTypes['Game'], ParentType, ContextType>;
+  game_id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   rating?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
